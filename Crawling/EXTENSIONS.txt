@@ -1,0 +1,25 @@
+# How to extend this solution
+
+1. Products outside of the Household Essentials category:
+
+To extend this, instead of having `CRAWL_TARGET` you can have an array and loop
+through it. Also, for more products you can extend the `MAX_LISTING_PAGES` to
+a higher number.
+
+2. Domains beyond Walgreens.com:
+
+Most likely, the structure of the HTML will be different. You will need to
+either write a different solution or encapsulate some of the logic and switch
+it based on the domain.
+
+For example, to get to the category product listing you could have a function
+that takes in the domain and navigates to the category page. Same for the
+`getProductData` function.
+
+3. Lambda and Docker:
+
+Given that `@sparticuz/chromium` is used, this solution can be easily deployed
+to AWS Lambda or any docker (linux 64 based) environment. A bonus comes from
+storing the chromium binary in an S3 bucket and downloading it on the fly
+when the container is created. This way, you can have a slim function/image
+and not have to worry about the size of the chromium binary (50MB+ compressed).
